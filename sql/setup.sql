@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS userClips CASCADE;
 DROP TABLE IF EXISTS usersComments CASCADE;
 DROP TABLE IF EXISTS comments CASCADE;
-
+DROP TABLE IF EXISTS votes CASCADE;
 
  CREATE TABLE users (
     id bigint generated always as identity primary key,
@@ -38,6 +38,18 @@ CREATE TABLE comments (
     foreign key (commenter_id) references usersComments(users_id),
     foreign key (clip_id) references userClips(clip_id)
 );
+
+CREATE TABLE votes (
+    id bigint generated always as identity,
+    voteUp boolean,
+    voteDown boolean,
+    commenter_id bigint not null,
+    foreign key (commenter_id) references users(id)
+);
+
+
+
+
 
 
 
