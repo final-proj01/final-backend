@@ -41,16 +41,10 @@ describe('User routes', () => {
       
     });
   });
+
+
+
   afterAll(() => {
     pool.end();
   });
-    
-
-
-
-
-
-
-
-
 });
