@@ -5,9 +5,9 @@ const app = require('../lib/app');
 // const UserService = require('../lib/services/UserService');
 
 const mockUser = {
-  email: 'lamp@shade.com',
   GamerTag: 'Zorb',
-  password_hash: '12345',
+  email: 'lamp@shade.com',
+  password: '12345',
 };
 
 // const registerAndLogin = async (userProps = {}) => {
@@ -27,14 +27,18 @@ describe('User routes', () => {
     return setup(pool);
   });
   
-  it('Create a new user', async () => {
+  it.only('Create a new user', async () => {
     const res = await request(app).post('/api/v1/users').send(mockUser);
-    const { GamerTag, email } = mockUser;
       
     expect(res.body).toEqual({
       id: expect.any(String),
-      GamerTag,
-      email,
+      avatar_png: null,
+      bio: null,
+      GamerTag: expect.any(String),
+      email: expect.any(String),
+      platforms: null,
+      channelLinks: null,
+      
     });
   });
   afterAll(() => {
