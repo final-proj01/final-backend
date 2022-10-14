@@ -13,10 +13,10 @@ DROP TABLE IF EXISTS followers CASCADE;
     GamerTag varchar not null,
     email varchar not null,
     password_hash varchar not null,
-    bio varchar not null,
-    platforms varchar not null,
-    avatar_png varchar not null,
-    channelLinks varchar not null
+    bio varchar,
+    platforms varchar,
+    avatar_png varchar,
+    channelLinks varchar
  );
 
 CREATE TABLE userClips (

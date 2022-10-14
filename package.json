@@ -29,7 +29,7 @@
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
-    "supertest": "^6.2.3"
+    "supertest": "^6.3.0"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
