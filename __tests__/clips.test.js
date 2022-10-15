@@ -1,0 +1,116 @@
+const pool = require('../lib/utils/pool');
+const setup = require('../data/setup');
+const request = require('supertest');
+const app = require('../lib/app');
+const Clip = require('../lib/models/Clip');
+// const UserService = require('../lib/services/UserService');
+
+const mockUser = {
+  GamerTag: 'Zorb',
+  email: 'lamp@shade.com',
+  password: '12345',
+};
+
+const chad = {
+  email: 'stablerpsn@gmail.com',
+  password: 'jimmyjango'
+};
+
+// const registerAndLogin = async (userProps = {}) => {
+//   const password = userProps.password ?? mockUser.password;
+
+//   const agent = request.agent(app);
+
+//   const user = await UserService.create({ ...mockUser, ...userProps });
+
+//   const { email } = user;
+//   await agent.post('/api/v1/users/sessions').send({ email, password });
+//   return [agent, user];
+// };
+
+describe('Clip routes', () => {
+  beforeEach(() => {
+    return setup(pool);
+  });
+  
+  it.only('Fetch clips by user id', async () => {
+    const agent = request.agent(app);
+    await agent.post('/api/v1/users/sessions').send(chad);
+    const user = await agent.get('/api/v1/users/me');
+    const res = await Clip.getClipsById(user.body.id);
+
+    expect(res).toEqual([{
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    {
+      id: expect.any(String),
+      clip_link: expect.any(String),
+      users_id: expect.any(String),
+      o_site: expect.any(String)
+    },
+    ]);
+  });
+});
+
+
+
+afterAll(() => {
+  pool.end();
+});

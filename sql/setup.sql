@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS userClips CASCADE;
-DROP TABLE IF EXISTS usersComments CASCADE;
+DROP TABLE IF EXISTS user_clips CASCADE;
+DROP TABLE IF EXISTS user_comments CASCADE;
 DROP TABLE IF EXISTS comments CASCADE;
 DROP TABLE IF EXISTS votes CASCADE;
-DROP TABLE IF EXISTS communityFeedTable CASCADE;
+DROP TABLE IF EXISTS community_feed CASCADE;
 DROP TABLE IF EXISTS followers CASCADE;
 
 
@@ -19,16 +19,17 @@ DROP TABLE IF EXISTS followers CASCADE;
     channelLinks varchar
  );
 
-CREATE TABLE userClips (
+CREATE TABLE user_clips (
     id bigint generated always as identity primary key,
-    clipLink varchar not null,
+    clip_link varchar not null,
     users_id bigint,
+    o_site varchar not null,
     foreign key (users_id) references users(id)
 );
 
-CREATE TABLE usersComments (
+CREATE TABLE user_comments (
     id bigint generated always as identity,
-    comment_id bigint not null,
+    comment varchar not null,
     users_id bigint primary key,
     foreign key (users_id) references users(id)
 );
@@ -38,23 +39,23 @@ CREATE TABLE comments (
     commenter_id bigint not null,
     clip_id bigint not null,
     comments varchar not null,
-    foreign key (commenter_id) references usersComments(users_id),
-    foreign key (clip_id) references userClips(id)
+    foreign key (commenter_id) references user_comments(users_id),
+    foreign key (clip_id) references user_clips(id)
 );
 
 CREATE TABLE votes (
     id bigint generated always as identity,
     voteUp boolean,
     voteDown boolean,
-    commenter_id bigint not null,
-    foreign key (commenter_id) references users(id)
+    voter_id bigint not null,
+    foreign key (voter_id) references users(id)
 );
 
-CREATE TABLE communityFeedTable (
+CREATE TABLE community_feed (
     id bigint generated always as identity,
     clip_id bigint not null,
     users_id bigint not null,
-    foreign key (clip_id) references userClips(id)
+    foreign key (clip_id) references user_clips(id)
 );
 
 CREATE TABLE followers (
@@ -64,11 +65,21 @@ CREATE TABLE followers (
     followed boolean
 );
 
+insert into users (GamerTag, email, password_hash, bio, platforms, channelLinks) values
+('CheatcodeChad', 'stablerpsn@gmail.com', '$2b$10$uJutybBq9l/Hwk81Ourcm.sRgBUqPOthHNek8cO7x2wWAf5Sjz9Ie', 
+'Developer of Twitch Tok, absolute legend. can scramble under pressure so effectively I look like Neo from The Matrix',
+'Playstation, PC', 'https://www.youtube.com/channel/UCyS4i5WTxl16KPJRNl3i0jg, https://www.twitch.tv/thegoodmansinner');
 
 
-
-
-
-
-
-
+insert into user_clips (clip_link, users_id, o_site) values
+('NKoVRXKv4rM', 1, 'youtube'),
+('1puKDTa5kL8', 1, 'youtube'),
+('EDUQy8ZpaGU', 1, 'youtube'),
+('y0WVN-d8l5c', 1, 'youtube'),
+('M7xQ0QXotEg', 1, 'youtube'),
+('hu9y_EL5EJw', 1, 'youtube'),
+('USMrVs-gYlA', 1, 'youtube'),
+('6R1rXlnTXjs', 1, 'youtube'),
+('KfiZL8SSjf4', 1, 'youtube'),
+('zw_R_-WYDns', 1, 'youtube'),
+('jZsJssw5zso', 1, 'youtube');
