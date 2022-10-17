@@ -71,7 +71,11 @@ CREATE TABLE followers (
 insert into users (GamerTag, email, password_hash, bio, platforms, channelLinks) values
 ('CheatcodeChad', 'stablerpsn@gmail.com', '$2b$10$uJutybBq9l/Hwk81Ourcm.sRgBUqPOthHNek8cO7x2wWAf5Sjz9Ie', 
 'Developer of Twitch Tok, absolute legend. can scramble under pressure so effectively I look like Neo from The Matrix',
-'Playstation, PC', 'https://www.youtube.com/channel/UCyS4i5WTxl16KPJRNl3i0jg, https://www.twitch.tv/thegoodmansinner');
+'Playstation, PC', 'https://www.youtube.com/channel/UCyS4i5WTxl16KPJRNl3i0jg, https://www.twitch.tv/thegoodmansinner'),
+('LEINADDROFNATS', 'stanman@gmail.com', '$2b$10$LVjRfZEU00gO.pzF8A2nE.vH/j6RgVJ3b2/unbauuVIDvHq2IA4Eq', 
+'Developer of Twitch Tok, the goat. i dont know you thats my pocket watch',
+'Playstation, PC, xbox360', 'https://www.youtube.com/watch?v=Ws2XeyuAg6s, https://www.youtube.com/watch?v=XTM7aI-CFC0');
+
 
 
 insert into user_clips (clip_link, users_id, o_site, title) values
@@ -85,4 +89,6 @@ insert into user_clips (clip_link, users_id, o_site, title) values
 ('6R1rXlnTXjs', 1, 'youtube', 'Respect the square'),
 ('KfiZL8SSjf4', 1, 'youtube', 'I don`t even know'),
 ('zw_R_-WYDns', 1, 'youtube', 'Double no scope'),
-('jZsJssw5zso', 1, 'youtube', 'Tappy tap');
+('jZsJssw5zso', 1, 'youtube', 'Tappy tap'),
+('Ws2XeyuAg6s', 2, 'youtube', 'AT4 HITs'),
+('xODcaE-Vr-I', 2, 'youtube', 'killed by my own guy');
