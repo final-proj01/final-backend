@@ -69,6 +69,26 @@ describe('User routes', () => {
   });
 
 
+  it('/me route grabs user info', async () => {
+    const [agent] = await registerAndLogin();
+    const res = await agent
+      .get('/api/v1/users/me');
+    expect(res.body).toEqual({ 
+      GamerTag: expect.any(String),
+      email: expect.any(String), 
+      id: expect.any(String),
+      bio: null, 
+      platforms: null,
+      avatar_png: null,
+      channelLinks: null
+    });
+    expect(res.status).toBe(200);
+  });
+
+
+
+
+
   afterAll(() => {
     pool.end();
   });
