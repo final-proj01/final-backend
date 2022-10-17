@@ -24,6 +24,9 @@ CREATE TABLE user_clips (
     clip_link varchar not null,
     users_id bigint,
     o_site varchar not null,
+    created_at timestamp,
+    description varchar,
+    title varchar not null,
     foreign key (users_id) references users(id)
 );
 
@@ -38,7 +41,7 @@ CREATE TABLE comments (
     id bigint generated always as identity primary key,
     commenter_id bigint not null,
     clip_id bigint not null,
-    comments varchar not null,
+    details varchar not null,
     foreign key (commenter_id) references user_comments(users_id),
     foreign key (clip_id) references user_clips(id)
 );
@@ -71,15 +74,15 @@ insert into users (GamerTag, email, password_hash, bio, platforms, channelLinks)
 'Playstation, PC', 'https://www.youtube.com/channel/UCyS4i5WTxl16KPJRNl3i0jg, https://www.twitch.tv/thegoodmansinner');
 
 
-insert into user_clips (clip_link, users_id, o_site) values
-('NKoVRXKv4rM', 1, 'youtube'),
-('1puKDTa5kL8', 1, 'youtube'),
-('EDUQy8ZpaGU', 1, 'youtube'),
-('y0WVN-d8l5c', 1, 'youtube'),
-('M7xQ0QXotEg', 1, 'youtube'),
-('hu9y_EL5EJw', 1, 'youtube'),
-('USMrVs-gYlA', 1, 'youtube'),
-('6R1rXlnTXjs', 1, 'youtube'),
-('KfiZL8SSjf4', 1, 'youtube'),
-('zw_R_-WYDns', 1, 'youtube'),
-('jZsJssw5zso', 1, 'youtube');
+insert into user_clips (clip_link, users_id, o_site, title) values
+('NKoVRXKv4rM', 1, 'youtube', 'Rocket League clip'),
+('1puKDTa5kL8', 1, 'youtube', 'Tossing someone into the pool'),
+('EDUQy8ZpaGU', 1, 'youtube', 'Oh wait does someone else wanna hold the bridge?'),
+('y0WVN-d8l5c', 1, 'youtube', 'I`m blind'),
+('M7xQ0QXotEg', 1, 'youtube', 'Double kill'),
+('hu9y_EL5EJw', 1, 'youtube', 'Kali ace'),
+('USMrVs-gYlA', 1, 'youtube', 'Wall bang headshot'),
+('6R1rXlnTXjs', 1, 'youtube', 'Respect the square'),
+('KfiZL8SSjf4', 1, 'youtube', 'I don`t even know'),
+('zw_R_-WYDns', 1, 'youtube', 'Double no scope'),
+('jZsJssw5zso', 1, 'youtube', 'Tappy tap');
