@@ -2,7 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
-// const UserService = require('../lib/services/UserService');
+const UserService = require('../lib/services/UserService');
 
 const mockUser = {
   GamerTag: 'Zorb',
@@ -10,17 +10,17 @@ const mockUser = {
   password: '12345',
 };
 
-// const registerAndLogin = async (userProps = {}) => {
-//   const password = userProps.password ?? mockUser.password;
+const registerAndLogin = async (userProps = {}) => {
+  const password = userProps.password ?? mockUser.password;
 
-//   const agent = request.agent(app);
+  const agent = request.agent(app);
 
-//   const user = await UserService.create({ ...mockUser, ...userProps });
+  const user = await UserService.create({ ...mockUser, ...userProps });
 
-//   const { email } = user;
-//   await agent.post('/api/v1/users/sessions').send({ email, password });
-//   return [agent, user];
-// };
+  const { email } = user;
+  await agent.post('/api/v1/users/sessions').send({ email, password });
+  return [agent, user];
+};
 
 describe('User routes', () => {
   beforeEach(() => {
@@ -56,7 +56,17 @@ describe('User routes', () => {
     expect(res.status).toEqual(401);
   });
 
+  it('protected user routes throw 200', async () => {
+    const [agent] = await registerAndLogin();
+    const res = await agent.get('/api/v1/users/protected');
+    expect(res.status).toEqual(200);
+  });
 
+  it('deletes user session', async () => {
+    const [agent] = await registerAndLogin();
+    const res = await agent.delete('/api/v1/users/sessions');
+    expect(res.status).toBe(204);
+  });
 
 
   afterAll(() => {
