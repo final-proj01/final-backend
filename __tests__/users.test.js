@@ -10,6 +10,12 @@ const mockUser = {
   password: '12345',
 };
 
+const mockUpdate = {
+  bio: 'my shit',
+  platforms: 'dont worry bout what i got',
+  channelLinks: 'oh wait im really cheating'
+};
+
 const registerAndLogin = async (userProps = {}) => {
   const password = userProps.password ?? mockUser.password;
 
@@ -81,6 +87,21 @@ describe('User routes', () => {
       platforms: null,
       avatar_png: null,
       channelLinks: null
+    });
+    expect(res.status).toBe(200);
+  });
+
+  it('updates bio', async () => {
+    const [agent] = await registerAndLogin(mockUser);
+    const res = await agent
+      .post('/api/v1/users/update')
+      .send(mockUpdate);
+    expect(res.body).toEqual({ 
+      id: expect.any(String),
+      GamerTag: expect.any(String),
+      email: expect.any(String),
+      avatar_png: null,
+      ...mockUpdate
     });
     expect(res.status).toBe(200);
   });
