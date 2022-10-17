@@ -27,7 +27,7 @@ describe('User routes', () => {
     return setup(pool);
   });
   
-  it.only('Create a new user', async () => {
+  it('Create a new user', async () => {
     const res = await request(app).post('/api/v1/users').send(mockUser);
       
     expect(res.body).toEqual({
@@ -41,6 +41,21 @@ describe('User routes', () => {
       
     });
   });
+
+  it('signs in existing user', async () => {
+    await request(app).post('/api/v1/users').send(mockUser);
+    const res = await request(app)
+      .post('/api/v1/users/sessions')
+      .send(mockUser);
+    expect(res.status).toEqual(200);
+  });
+
+
+  it('throw 401 if not auth', async () => {
+    const res = await request(app).get('/api/v1/users/protected');
+    expect(res.status).toEqual(401);
+  });
+
 
 
 
