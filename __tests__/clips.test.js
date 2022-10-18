@@ -63,11 +63,25 @@ describe('Clip routes', () => {
       users_id: expect.any(String)
     });
   });
+  it('should delete video by id', async () => {
+    const agent = request.agent(app);
+    await agent.post('/api/v1/users/sessions').send(chad);
+
+    const res = await agent.delete('/api/v1/clips/2');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '2',
+      clip_link: '1puKDTa5kL8',
+      users_id: '1',
+      o_site: 'youtube',
+      created_at: null,
+      description:  null,
+      title: 'Tossing someone into the pool'
+    });
+
+  });
 });
-
-
-
-
 afterAll(() => {
   pool.end();
 });
