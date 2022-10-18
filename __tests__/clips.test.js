@@ -59,7 +59,7 @@ describe('Clip routes', () => {
     expect(res.body).toEqual({
       ...mockClip,
       id: expect.any(String),
-      created_at: null,
+      created_at: expect.any(String),
       users_id: expect.any(String)
     });
   });
@@ -75,7 +75,7 @@ describe('Clip routes', () => {
       clip_link: '1puKDTa5kL8',
       users_id: '1',
       o_site: 'youtube',
-      created_at: null,
+      created_at: expect.any(String),
       description:  null,
       title: 'Tossing someone into the pool'
     });
