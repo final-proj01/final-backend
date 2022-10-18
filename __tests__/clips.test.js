@@ -59,7 +59,7 @@ describe('Clip routes', () => {
     expect(res.body).toEqual({
       ...mockClip,
       id: expect.any(String),
-      created_at: null,
+      created_at: expect.any(String),
       users_id: expect.any(String)
     });
   });
@@ -75,11 +75,20 @@ describe('Clip routes', () => {
       clip_link: '1puKDTa5kL8',
       users_id: '1',
       o_site: 'youtube',
-      created_at: null,
+      created_at: expect.any(String),
       description:  null,
       title: 'Tossing someone into the pool'
     });
 
+  });
+  it('should return all clips', async () => {
+    const agent = request.agent(app);
+    await agent.post('/api/v1/users/sessions').send(chad);
+
+    const res = await agent.get('/api/v1/clips');
+
+    expect(res.status).toBe(200);
+    expect(res.body.length).toEqual(11);
   });
 });
 afterAll(() => {

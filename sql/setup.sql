@@ -24,7 +24,7 @@ CREATE TABLE user_clips (
     clip_link varchar not null,
     users_id bigint,
     o_site varchar not null,
-    created_at timestamp,
+    created_at  timestamptz not null default now(),
     description varchar,
     title varchar not null,
     foreign key (users_id) references users(id)
@@ -42,6 +42,7 @@ CREATE TABLE comments (
     commenter_id bigint not null,
     clip_id bigint not null,
     details varchar not null,
+    created_at  timestamptz not null default now(),
     foreign key (commenter_id) references user_comments(users_id),
     foreign key (clip_id) references user_clips(id)
 );
