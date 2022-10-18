@@ -81,6 +81,15 @@ describe('Clip routes', () => {
     });
 
   });
+  it('should return all clips', async () => {
+    const agent = request.agent(app);
+    await agent.post('/api/v1/users/sessions').send(chad);
+
+    const res = await agent.get('/api/v1/clips');
+
+    expect(res.status).toBe(200);
+    expect(res.body.length).toEqual(11);
+  });
 });
 afterAll(() => {
   pool.end();
