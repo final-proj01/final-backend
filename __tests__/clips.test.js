@@ -11,6 +11,13 @@ const chad = {
   password: 'jimmyjango'
 };
 
+const mockClip = {
+  title: 'Boom',
+  o_site: 'youtube',
+  description: 'woop de doop',
+  clip_link: '52dWQtMSlrw'
+};
+
 // const registerAndLogin = async (userProps = {}) => {
 //   const password = userProps.password ?? mockUser.password;
 
@@ -42,10 +49,39 @@ describe('Clip routes', () => {
     const res = await agent.get('/api/v1/clips/user');
     expect(res.body.length).toEqual(11);
   });
+  it('insert clip should insert a clip', async () => {
+    const agent = request.agent(app);
+    await agent.post('/api/v1/users/sessions').send(chad);
+
+    const res = await agent.post('/api/v1/clips/user').send(mockClip);
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      ...mockClip,
+      id: expect.any(String),
+      created_at: null,
+      users_id: expect.any(String)
+    });
+  });
+  it('should delete video by id', async () => {
+    const agent = request.agent(app);
+    await agent.post('/api/v1/users/sessions').send(chad);
+
+    const res = await agent.delete('/api/v1/clips/2');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      id: '2',
+      clip_link: '1puKDTa5kL8',
+      users_id: '1',
+      o_site: 'youtube',
+      created_at: null,
+      description:  null,
+      title: 'Tossing someone into the pool'
+    });
+
+  });
 });
-
-
-
 afterAll(() => {
   pool.end();
 });
