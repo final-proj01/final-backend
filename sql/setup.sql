@@ -24,7 +24,7 @@ CREATE TABLE user_clips (
     clip_link varchar not null,
     users_id bigint,
     o_site varchar not null,
-    created_at timestamp,
+    created_at Timestamp,
     description varchar,
     title varchar not null,
     foreign key (users_id) references users(id)
