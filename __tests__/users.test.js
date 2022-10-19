@@ -100,7 +100,7 @@ describe('User routes', () => {
   it('updates bio', async () => {
     const [agent] = await registerAndLogin(mockUser);
     const res = await agent
-      .post('/api/v1/users/update')
+      .put('/api/v1/users/2')
       .send(mockUpdate);
     expect(res.body).toEqual({ 
       id: expect.any(String),

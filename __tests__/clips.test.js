@@ -88,7 +88,7 @@ describe('Clip routes', () => {
     const res = await agent.get('/api/v1/clips');
 
     expect(res.status).toBe(200);
-    expect(res.body.length).toEqual(11);
+    expect(res.body.length).toEqual(13);
   });
 });
 afterAll(() => {
