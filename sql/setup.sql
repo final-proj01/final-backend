@@ -39,24 +39,15 @@ CREATE TABLE user_clips (
     foreign key (vote_id) references votes(id)
 );
 
-
 CREATE TABLE comments (
     id bigint generated always as identity primary key,
+    commenter_id bigint not null,
     clip_id bigint not null,
     details varchar not null,
     created_at  timestamptz not null default now(),
-    foreign key (clip_id) references user_clips(id)
+    foreign key (clip_id) references user_clips(id),
+    foreign key (commenter_id) references users(id)
 );
-
-
-CREATE TABLE user_comments (
-    id bigint generated always as identity primary key,
-    users_id bigint,
-    comment_id bigint,
-    foreign key (comment_id) references comments(id),
-    foreign key (users_id) references users(id)
-);
-
 
 CREATE TABLE community_feed (
     id bigint generated always as identity,
@@ -98,12 +89,8 @@ insert into user_clips (clip_link, users_id, o_site, title) values
 ('xODcaE-Vr-I', 2, 'youtube', 'killed by my own guy');
 
 
-insert into comments (details, clip_id) values 
-('this game is freaking sweet', 1);
-
-
-insert into user_comments (comment_id, users_id) values 
-(1,1);
+insert into comments (details, clip_id, commenter_id) values 
+('this game is freaking sweet', 1, 2);
 
 
 insert into votes (voteUp, voteDown, voter_id) values

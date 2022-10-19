@@ -25,3 +25,24 @@ If you work on more than one feature at a time, you are guaranteed to multiply y
 //     next(e);
 //   }
 // })
+
+
+<!-- CREATE TABLE user_comments (
+    id bigint generated always as identity primary key,
+    users_id bigint,
+    comment_id bigint,
+    foreign key (comment_id) references comments(id),
+    foreign key (users_id) references users(id)
+); -->
+
+// const registerAndLogin = async (userProps = {}) => {
+//   const password = userProps.password ?? mockUser.password;
+
+//   const agent = request.agent(app);
+
+//   const user = await UserService.create({ ...mockUser, ...userProps });
+
+//   const { email } = user;
+//   await agent.post('/api/v1/users/sessions').send({ email, password });
+//   return [agent, user];
+// };

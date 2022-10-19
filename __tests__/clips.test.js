@@ -18,18 +18,6 @@ const mockClip = {
   clip_link: '52dWQtMSlrw'
 };
 
-// const registerAndLogin = async (userProps = {}) => {
-//   const password = userProps.password ?? mockUser.password;
-
-//   const agent = request.agent(app);
-
-//   const user = await UserService.create({ ...mockUser, ...userProps });
-
-//   const { email } = user;
-//   await agent.post('/api/v1/users/sessions').send({ email, password });
-//   return [agent, user];
-// };
-
 describe('Clip routes', () => {
   beforeEach(() => {
     return setup(pool);
