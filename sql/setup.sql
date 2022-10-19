@@ -17,17 +17,26 @@ DROP TABLE IF EXISTS followers CASCADE;
     platforms varchar,
     avatar_png varchar,
     channelLinks varchar
- );
+);
 
 CREATE TABLE user_clips (
     id bigint generated always as identity primary key,
     clip_link varchar not null,
     users_id bigint,
+    vote_id bigint,
     o_site varchar not null,
     created_at  timestamptz not null default now(),
     description varchar,
     title varchar not null,
     foreign key (users_id) references users(id)
+);
+
+CREATE TABLE votes (
+    id bigint generated always as identity primary key,
+    voteUp boolean,
+    voteDown boolean,
+    voter_id bigint not null,
+    foreign key (id) references user_clips(id)
 );
 
 CREATE TABLE comments (
@@ -38,22 +47,15 @@ CREATE TABLE comments (
     foreign key (clip_id) references user_clips(id)
 );
 
+
 CREATE TABLE user_comments (
-    id bigint generated always as identity,
-    users_id bigint primary key,
+    id bigint generated always as identity primary key,
+    users_id bigint,
     comment_id bigint,
     foreign key (comment_id) references comments(id),
     foreign key (users_id) references users(id)
 );
 
-
-CREATE TABLE votes (
-    id bigint generated always as identity,
-    voteUp boolean,
-    voteDown boolean,
-    voter_id bigint not null,
-    foreign key (voter_id) references users(id)
-);
 
 CREATE TABLE community_feed (
     id bigint generated always as identity,
@@ -96,9 +98,18 @@ insert into user_clips (clip_link, users_id, o_site, title) values
 
 
 insert into comments (details, clip_id) values 
-    ('this game is freaking sweet', 1);
+('this game is freaking sweet', 1);
 
 
-    insert into user_comments (comment_id, users_id) values 
-    (1,1);
+insert into user_comments (comment_id, users_id) values 
+(1,1);
+
+
+insert into votes (voteUp, voteDown, voter_id) values
+(true, false, 1),
+(false, true, 2);
+
+-- insert into user_clips (vote_id, users_id) values
+-- (1, 1),
+-- (1, 2);
 
