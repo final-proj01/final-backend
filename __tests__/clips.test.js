@@ -77,7 +77,7 @@ describe('Clip routes', () => {
       o_site: 'youtube',
       created_at: expect.any(String),
       description:  null,
-      title: 'Tossing someone into the pool'
+      title: 'Tossing someone into the pool',
     });
 
   });
@@ -88,7 +88,7 @@ describe('Clip routes', () => {
     const res = await agent.get('/api/v1/clips');
 
     expect(res.status).toBe(200);
-    expect(res.body.length).toEqual(11);
+    expect(res.body.length).toEqual(13);
   });
 });
 afterAll(() => {
