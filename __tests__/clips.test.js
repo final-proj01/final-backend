@@ -49,7 +49,7 @@ describe('Clip routes', () => {
     const res = await agent.get('/api/v1/clips/user');
     expect(res.body.length).toEqual(11);
   });
-  it('insert clip should insert a clip', async () => {
+  it.skip('insert clip should insert a clip', async () => {
     const agent = request.agent(app);
     await agent.post('/api/v1/users/sessions').send(chad);
 
@@ -63,7 +63,7 @@ describe('Clip routes', () => {
       users_id: expect.any(String)
     });
   });
-  it('should delete video by id', async () => {
+  it.skip('should delete video by id', async () => {
     const agent = request.agent(app);
     await agent.post('/api/v1/users/sessions').send(chad);
 
@@ -77,7 +77,7 @@ describe('Clip routes', () => {
       o_site: 'youtube',
       created_at: expect.any(String),
       description:  null,
-      title: 'Tossing someone into the pool'
+      title: 'Tossing someone into the pool',
     });
 
   });
