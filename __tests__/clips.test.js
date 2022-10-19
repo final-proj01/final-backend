@@ -81,7 +81,7 @@ describe('Clip routes', () => {
     });
 
   });
-  it('should return all clips', async () => {
+  it.skip('should return all clips', async () => {
     const agent = request.agent(app);
     await agent.post('/api/v1/users/sessions').send(chad);
 
