@@ -115,7 +115,7 @@ describe('User routes', () => {
   it('updates avatar_png', async () => {
     const [agent] = await registerAndLogin(mockUser);
     const res = await agent
-      .post('/api/v1/users/updateAvatar')
+      .put('/api/v1/users/logo/3')
       .send(mockAvatar);
     expect(res.body).toEqual({ 
       id: expect.any(String),
