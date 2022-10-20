@@ -70,7 +70,7 @@ describe('User routes', () => {
 
   it('protected user routes throw 200', async () => {
     const [agent] = await registerAndLogin();
-    const res = await agent.get('/api/v1/users/protected');
+    const res = await agent.get('/api/v1/users/to/protected');
     expect(res.status).toEqual(200);
   });
 
