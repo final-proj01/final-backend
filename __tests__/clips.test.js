@@ -47,7 +47,6 @@ describe('Clip routes', () => {
     expect(res.body).toEqual({
       ...mockClip,
       comments: expect.any(Array),
-      vote_id: null,
       id: expect.any(String),
       created_at: expect.any(String),
       users_id: expect.any(String)
@@ -66,7 +65,6 @@ describe('Clip routes', () => {
       users_id: '1',
       o_site: 'youtube',
       comments: expect.any(Array),
-      vote_id: null,
       created_at: expect.any(String),
       description:  null,
       title: 'Tossing someone into the pool',

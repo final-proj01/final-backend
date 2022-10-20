@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS followers CASCADE;
 CREATE TABLE user_clips (
     id bigint generated always as identity primary key,
     clip_link varchar not null,
-    users_id bigint,
+    users_id bigint not null,
     o_site varchar not null,
     created_at  timestamptz not null default now(),
     description varchar,
