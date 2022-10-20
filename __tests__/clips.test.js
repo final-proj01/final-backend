@@ -37,7 +37,7 @@ describe('Clip routes', () => {
     const res = await agent.get('/api/v1/clips/user');
     expect(res.body.length).toEqual(11);
   });
-  it.skip('insert clip should insert a clip', async () => {
+  it('insert clip should insert a clip', async () => {
     const agent = request.agent(app);
     await agent.post('/api/v1/users/sessions').send(chad);
 
@@ -46,12 +46,14 @@ describe('Clip routes', () => {
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
       ...mockClip,
+      comments: expect.any(Array),
+      vote_id: null,
       id: expect.any(String),
       created_at: expect.any(String),
       users_id: expect.any(String)
     });
   });
-  it.skip('should delete video by id', async () => {
+  it('should delete video by id', async () => {
     const agent = request.agent(app);
     await agent.post('/api/v1/users/sessions').send(chad);
 
@@ -63,13 +65,15 @@ describe('Clip routes', () => {
       clip_link: '1puKDTa5kL8',
       users_id: '1',
       o_site: 'youtube',
+      comments: expect.any(Array),
+      vote_id: null,
       created_at: expect.any(String),
       description:  null,
       title: 'Tossing someone into the pool',
     });
 
   });
-  it.skip('should return all clips', async () => {
+  it('should return all clips', async () => {
     const agent = request.agent(app);
     await agent.post('/api/v1/users/sessions').send(chad);
 
