@@ -34,7 +34,7 @@ describe('Clip routes', () => {
   it('fetch clips id working in controller', async () => {
     const agent = request.agent(app);
     await agent.post('/api/v1/users/sessions').send(chad);
-    const res = await agent.get('/api/v1/clips/user');
+    const res = await agent.get('/api/v1/clips/user/1');
     expect(res.body.length).toEqual(11);
   });
   it('insert clip should insert a clip', async () => {
