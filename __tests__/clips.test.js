@@ -41,7 +41,7 @@ describe('Clip routes', () => {
     const agent = request.agent(app);
     await agent.post('/api/v1/users/sessions').send(chad);
 
-    const res = await agent.post('/api/v1/clips/user').send(mockClip);
+    const res = await agent.post('/api/v1/clips/user/1').send(mockClip);
 
     expect(res.status).toBe(200);
     expect(res.body).toEqual({
